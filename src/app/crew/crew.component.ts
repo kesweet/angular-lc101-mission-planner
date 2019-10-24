@@ -13,9 +13,27 @@ export class CrewComponent implements OnInit {
     {name: "Ellen Ochoa", firstMission: true}
   ];
 
+  memberBeingEdited = null;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  add(memberName: string, isFirst: boolean) {
+    this.crew.push({name: memberName, firstMission: isFirst});
+  }
+
+  remove(memberObject: object) {
+    this.crew.splice(this.crew.indexOf(crewMember), 1);
+  }
+
+  edit(memberObject: object) {
+    this.memberBeingEdited.name = memberObject;
+  }
+
+  save(name: string, member: object) {
+    member['name'] = name;
+    this.memberBeingEdited = null;
+  }
 }
